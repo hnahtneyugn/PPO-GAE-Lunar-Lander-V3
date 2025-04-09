@@ -21,11 +21,11 @@ env = gym.make(
 # Training parameters
 space_dim = env.observation_space.shape[0]
 action_dim = env.action_space.n
-n_epochs = 1000
+n_epochs = 5000
 eval_epochs = 1000
 gamma = 0.99
-alpha = 0.0003
-alpha_c = 0.0005
+alpha = 0.001
+alpha_c = 0.002
 target_steps = 1000
 entropy_coefficient_start = 0.1
 entropy_coefficient_end = 0.01
@@ -116,7 +116,7 @@ for t in pbar:
     pbar.set_description(f"Epoch {t+1} Average steps: {ave_steps}, Highest step: {max_ave_steps}, Average reward: {ave_rewards}, Highest reward: {max_ave_rewards}")
 
 # Evaluation in 1000 epochs using highest softmax action and save to a video file    
-env_video = RecordVideo(env, "./a2c_lunar_lander_1000_0.001_0.003_gradientclipping")
+env_video = RecordVideo(env, "./a2c_lunar_lander_5000_0.001_0.002")
 total_evaluation_reward = np.array([])
 
 for epoch in ebar:
@@ -142,8 +142,3 @@ for epoch in ebar:
 print(f"Accuracy: {np.count_nonzero(total_evaluation_reward[total_evaluation_reward >= 200]) / eval_epochs * 100}%")
 
 env_video.close()
-
-# Lunar Lander accuracy out of 1000 epochs evaluation:
-# alpha = 0.0003, alpha_c = 0.0005, 1000 training epochs -> 25%
-# alpha = 0.001, alpha_c = 0.002, 1000 training epochs, gradient clipping -> 0.2%
-# alpha = 0.001, alpha_c = 0.002, 1000 training epochs-> 70%
