@@ -3,7 +3,8 @@
 ## About this project 
 
 This is the final project for the course Foundations of Artificial Intelligence (AIT2004#) at the University of Engineering and Technology, Vietnam National University (UET–VNU). 
-It was completed during the second semester of the second year.
+
+It was completed during the 2nd semester of the 2nd year.
 
 ## Usage
 
